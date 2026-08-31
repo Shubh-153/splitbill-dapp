@@ -1,0 +1,26 @@
+{
+  "name": "splitbill-dapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "compile:fallback": "node scripts/compile-with-solc.js",
+    "test": "hardhat test",
+    "test:fallback": "node scripts/compile-with-solc.js && hardhat test --no-compile",
+    "node": "hardhat node",
+    "deploy:localhost": "hardhat run scripts/deploy.js --network localhost",
+    "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.28.1",
+    "solc": "^0.8.24"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
+}
