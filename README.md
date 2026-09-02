@@ -74,12 +74,12 @@ sequenceDiagram
     actor Participant as Participant
     participant Contract as SplitBill Smart Contract
     
-    Payer->>Contract: createBill(description, participants[], shares[])
-    Note over Contract: Stores bill details & emits BillCreated
+    Payer->>Contract: createBill(description, participants, shares)
+    Note over Contract: Stores bill details and emits BillCreated
     
-    Participant->>Contract: payShare(billId) + exact ETH
-    Note over Contract: Validates participant, unpaid status & exact ETH
-    Contract-->>Payer: Atomically forwards ETH via .call{value}()
+    Participant->>Contract: payShare(billId) with exact ETH
+    Note over Contract: Validates participant, unpaid status and exact ETH
+    Contract-->>Payer: Atomically forwards ETH to payer
     Contract-->>Participant: Emits SharePaid(billId, participant, amount)
     
     alt All participants have paid
