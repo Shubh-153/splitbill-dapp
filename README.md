@@ -70,21 +70,21 @@ Once the final participant completes their payment, the smart contract automatic
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Payer as Payer (Fronts Expense)
-    actor Participant as Participant
+    actor User as Payer (Fronts Expense)
+    actor Friend as Participant
     participant Contract as SplitBill Smart Contract
     
-    Payer->>Contract: createBill(description, participants, shares)
+    User->>Contract: createBill(description, participants, shares)
     Note over Contract: Stores bill details and emits BillCreated
     
-    Participant->>Contract: payShare(billId) with exact ETH
+    Friend->>Contract: payShare(billId) with exact ETH
     Note over Contract: Validates participant, unpaid status and exact ETH
-    Contract-->>Payer: Atomically forwards ETH to payer
-    Contract-->>Participant: Emits SharePaid(billId, participant, amount)
+    Contract-->>User: Atomically forwards ETH to payer
+    Contract-->>Friend: Emits SharePaid(billId, participant, amount)
     
     alt All participants have paid
         Note over Contract: bill.settled = true
-        Contract-->>Payer: Emits BillSettled(billId, totalAmount)
+        Contract-->>User: Emits BillSettled(billId, totalAmount)
     end
 ```
 
